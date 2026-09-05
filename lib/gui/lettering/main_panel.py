@@ -25,6 +25,8 @@ from . import LetteringHelpPanel, LetteringOptionsPanel
 
 
 class LetteringPanel(wx.Panel):
+    options_panel_class = LetteringOptionsPanel
+
     def __init__(self, parent, simulator, group, metadata=None, background_color='white'):
         self.parent = parent
         self.simulator = simulator
@@ -42,7 +44,7 @@ class LetteringPanel(wx.Panel):
 
         # notebook
         self.notebook = wx.Notebook(self, wx.ID_ANY)
-        self.options_panel = LetteringOptionsPanel(self.notebook, self)
+        self.options_panel = self.options_panel_class(self.notebook, self)
         self.notebook.AddPage(self.options_panel, _("Options"))
         help_panel = LetteringHelpPanel(self.notebook)
         self.notebook.AddPage(help_panel, _("Help"))

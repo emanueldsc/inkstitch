@@ -46,6 +46,7 @@ SODIPODI_INSENSITIVE = inkex.addNS('insensitive', 'sodipodi')
 SODIPODI_NODETYPES = inkex.addNS('nodetypes', 'sodipodi')
 
 INKSTITCH_LETTERING = inkex.addNS('lettering', 'inkstitch')
+INKSTITCH_LETTERING_PATCH = inkex.addNS('lettering-patch', 'inkstitch')
 INKSTITCH_TARTAN = inkex.addNS('tartan', 'inkstitch')
 INKSTITCH_SATIN_MULTICOLOR = inkex.addNS('satin-multicolor', 'inkstitch')
 

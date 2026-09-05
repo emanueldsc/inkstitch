@@ -8,6 +8,28 @@ import sys
 from pathlib import Path  # to work with paths as objects
 from argparse import ArgumentParser  # to parse arguments and remove --extension
 
+SCRIPTDIR = Path(__file__).resolve().parent
+
+
+def _use_development_virtualenv():
+    """Restart the development extension with the repository virtualenv."""
+    if sys.platform != "win32" or getattr(sys, "frozen", False):
+        return
+    if os.environ.get("INKSTITCH_VENV_REEXEC") == "1":
+        return
+
+    virtualenv_python = SCRIPTDIR / ".venv" / "Scripts" / "python.exe"
+    if not virtualenv_python.is_file():
+        return
+    if Path(sys.executable).resolve() == virtualenv_python.resolve():
+        return
+
+    os.environ["INKSTITCH_VENV_REEXEC"] = "1"
+    os.execv(str(virtualenv_python), [str(virtualenv_python), *sys.argv])
+
+
+_use_development_virtualenv()
+
 if sys.version_info >= (3, 11):
     import tomllib      # built-in in Python 3.11+
 else:
@@ -20,8 +42,6 @@ import lib.debug.logging as debug_logging
 from lib.debug.utils import safe_get    # mimic get method of dict with default value
 
 # --------------------------------------------------------------------------------------------
-
-SCRIPTDIR = Path(__file__).parent.absolute()
 
 logger = logging.getLogger("inkstitch")   # create module logger with name 'inkstitch'
 

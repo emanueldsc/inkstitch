@@ -35,6 +35,7 @@ from .knockdown_fill import KnockdownFill
 from .layer_commands import LayerCommands
 from .lettering import Lettering
 from .lettering_along_path import LetteringAlongPath
+from .lettering_patch import LetteringPatch
 from .lettering_custom_font_dir import LetteringCustomFontDir
 from .lettering_edit_json import LetteringEditJson
 from .lettering_font_sample import LetteringFontSample
@@ -115,6 +116,7 @@ extensions = [
     LayerCommands,
     Lettering,
     LetteringAlongPath,
+    LetteringPatch,
     LetteringCustomFontDir,
     LetteringEditJson,
     LetteringFontSample,
